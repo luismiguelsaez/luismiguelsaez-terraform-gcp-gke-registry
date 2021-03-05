@@ -21,6 +21,7 @@ module "gke" {
   http_load_balancing        = false
   horizontal_pod_autoscaling = false
   network_policy             = false
+  create_service_account     = true
 
   node_pools = [
     {
@@ -35,7 +36,6 @@ module "gke" {
       image_type         = "COS"
       auto_repair        = true
       auto_upgrade       = true
-      service_account    = format("project-service-account@%s.iam.gserviceaccount.com", var.project)
       preemptible        = false
       initial_node_count = 80
     },
